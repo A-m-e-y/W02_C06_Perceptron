@@ -1,4 +1,5 @@
 import numpy as np
+import sys
 
 # Sigmoid activation function
 def sigmoid(x):
@@ -12,8 +13,8 @@ def sigmoid_derivative(x):
 # Perceptron class using sigmoid activation
 class Perceptron:
     def __init__(self, input_size, learning_rate=0.1):
-        self.weights = np.zeros(input_size)
-        self.bias = 0.0
+        self.weights = np.random.randn(input_size)
+        self.bias = np.random.randn()
         self.lr = learning_rate
 
     def predict(self, x):
@@ -37,21 +38,33 @@ class Perceptron:
             if epoch % 1000 == 0:
                 print(f"Epoch {epoch}, Loss: {total_loss:.6f}")
 
+def generate_nand_data(n_inputs):
+    """Generate training data for an N-input NAND gate."""
+    X = np.array([list(map(int, f"{i:0{n_inputs}b}")) for i in range(2**n_inputs)])
+    y = np.array([1 if np.sum(x) < n_inputs else 0 for x in X])  # NAND logic
+    return X, y
+
 def main():
-    # Step 3: NAND data
-    X = np.array([
-        [0, 0],
-        [0, 1],
-        [1, 0],
-        [1, 1]
-    ])
-    y = np.array([1, 1, 1, 0])  # NAND outputs
+    if len(sys.argv) != 2:
+        print("Usage: python3 Simple_Perceptron_NAND.py <number_of_inputs>")
+        sys.exit(1)
+
+    try:
+        n_inputs = int(sys.argv[1])
+        if n_inputs < 2:
+            raise ValueError("Number of inputs must be at least 2.")
+    except ValueError as e:
+        print(f"Invalid input: {e}")
+        sys.exit(1)
+
+    # Generate training data for N-input NAND gate
+    X, y = generate_nand_data(n_inputs)
 
     # Create perceptron
-    p = Perceptron(input_size=2, learning_rate=0.1)
+    p = Perceptron(input_size=n_inputs, learning_rate=0.1)
 
     # Train perceptron
-    print("Training the perceptron for NAND logic:")
+    print(f"Training the perceptron for {n_inputs}-input NAND logic:")
     p.train(X, y)
 
     # Test predictions
