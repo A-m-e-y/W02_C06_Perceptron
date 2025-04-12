@@ -131,11 +131,75 @@ This is demonstrated in the `Multi_Layer_Perceptron_XOR.py` file.
 
 ---
 
+### `Multi_Layer_Perceptron_XOR.py`
+
+This file implements a multi-layer perceptron (MLP) to solve the XOR gate problem.
+Unlike a single-layer perceptron, the MLP can model non-linear decision boundaries by introducing hidden layers.
+
+#### Key Features:
+- **Input size**: Number of inputs to the XOR gate (User can pass this argument at runtime).
+- **Hidden layers**: The number of hidden layers and neurons in each layer can be adjusted dynamically.
+- **Activation function**: Sigmoid function is used for non-linearity.
+- **Learning process**: The MLP uses backpropagation to update weights and biases.
+
+#### How to Run:
+```bash
+python3 Multi_Layer_Perceptron_XOR.py <NUM_INPUTS>
+```
+
+For example:
+```bash
+python3 Multi_Layer_Perceptron_XOR.py 4
+```
+This command creates a 4-input XOR gate.
+
+#### Effect of Hidden Layers:
+- **Number of Layers**: Increasing the number of hidden layers allows the MLP to model more complex non-linear functions.
+- **Why So Many Layers?**: XOR gates require at least one hidden layer to transform the input space into a linearly separable form. For higher-dimensional XOR gates (e.g., 4-input XOR), additional hidden layers may be needed to capture the complexity of the decision boundary.
+
+---
+
+### `visualize_multi_XOR.py`
+
+This file visualizes the learning process of the multi-layer perceptron for the XOR gate. It provides an animation showing how the decision boundary evolves as the MLP updates its weights and biases during training.
+
+#### How to Run:
+```bash
+python3 visualize_multi_XOR.py
+```
+
+The animation will be displayed and saved as a GIF in the `animations` folder.
+
+#### Animation Details:
+- **XOR Gate Animation**  
+  ![XOR Gate Animation](animations/multi_XOR_perceptron_animation.gif)
+
+The animation illustrates:
+- **Data Points**: White dots represent 0, and black dots represent 1.
+- **Decision Boundary**: Color Gradient (Background Contour)
+    - This is a contour map of the MLP’s output over all (x1, x2) positions in the 2D input space.
+    - The blue areas represent low output values (~0).
+    - The red areas represent high output values (~1).
+- **Epoch Progression**: The title of the plot updates to show the current epoch, indicating the training progress.
+
+#### Why the Graph Looks This Way:
+- The decision boundary is non-linear because the MLP uses hidden layers to transform the input space into a linearly separable form.
+- As training progresses, the boundary becomes more refined, converging to a solution that correctly classifies all inputs.
+- The MLP has learned a non-linear function that separates:
+    - Points [0,1] and [1,0] (which should output 1)
+    - From points [0,0] and [1,1] (which should output 0)
+- It can't do this with a single line (like a perceptron could), so it bends the decision surface — that's why we see a non-linear transition in the red/blue gradient.
+- This behavior highlights the power of MLPs to solve non-linear problems like XOR, which single-layer perceptrons cannot handle.
+
+---
+
 ## Conclusion
 
-This repository demonstrates the power and limitations of single-layer perceptrons. While they can learn linearly separable functions, they fail for non-linear functions like XOR. The visualizations provide an intuitive understanding of the learning process and the challenges faced by single-layer perceptrons.
+This project demonstrates the power and limitations of single-layer perceptrons. While they can learn linearly separable functions, they fail for non-linear functions like XOR. The visualizations provide an intuitive understanding of the learning process and the challenges faced by single-layer perceptrons.
+Then we implement the XOR Gate using a Multi Layered Perceptron to demonstrate it can realize a non-linear function.
+We also try to visualize this using a color gradient OF Blue and Red to separate 0 and 1 points.
 
-## How to Run the Code
+## Dependencies and how to clone
 
 1. Clone the repository:
    ```bash
