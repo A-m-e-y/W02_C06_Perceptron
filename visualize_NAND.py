@@ -44,6 +44,12 @@ def main():
     ax.set_ylabel("Input 2")
     ax.set_title("Learning NAND: Perceptron Decision Boundary")
 
+    # Fix legend icons
+    class_0 = plt.Line2D([0], [0], marker='o', color='w', markerfacecolor='red', markersize=10, label="0 : RED")
+    class_1 = plt.Line2D([0], [0], marker='o', color='w', markerfacecolor='blue', markersize=10, label="1 : BLUE")
+    ax.legend(handles=[class_0, class_1], loc="upper left")
+
+
     def update(i):
         w, b = history[i]
         x_vals = np.array([-0.5, 1.5])
