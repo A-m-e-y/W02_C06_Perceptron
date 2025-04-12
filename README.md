@@ -153,6 +153,40 @@ python3 Multi_Layer_Perceptron_XOR.py 4
 ```
 This command creates a 4-input XOR gate.
 
+Sample Output -
+```Bash
+Training XOR MLP with 4 inputs...
+Epoch 0, Loss: 4.567186
+Epoch 1000, Loss: 2.316423
+Epoch 2000, Loss: 1.398171
+Epoch 3000, Loss: 0.309107
+Epoch 4000, Loss: 0.130773
+Epoch 5000, Loss: 0.070039
+Epoch 6000, Loss: 0.044210
+Epoch 7000, Loss: 0.031294
+Epoch 8000, Loss: 0.023874
+Epoch 9000, Loss: 0.019158
+
+Predictions:
+Input: [0 0 0 0], Predicted: 0.0247, Binary: 0
+Input: [0 0 0 1], Predicted: 0.9674, Binary: 1
+Input: [0 0 1 0], Predicted: 0.9746, Binary: 1
+Input: [0 0 1 1], Predicted: 0.0256, Binary: 0
+Input: [0 1 0 0], Predicted: 0.9729, Binary: 1
+Input: [0 1 0 1], Predicted: 0.0180, Binary: 0
+Input: [0 1 1 0], Predicted: 0.0424, Binary: 0
+Input: [0 1 1 1], Predicted: 0.9651, Binary: 1
+Input: [1 0 0 0], Predicted: 0.9533, Binary: 1
+Input: [1 0 0 1], Predicted: 0.0602, Binary: 0
+Input: [1 0 1 0], Predicted: 0.0172, Binary: 0
+Input: [1 0 1 1], Predicted: 0.9712, Binary: 1
+Input: [1 1 0 0], Predicted: 0.0162, Binary: 0
+Input: [1 1 0 1], Predicted: 0.9690, Binary: 1
+Input: [1 1 1 0], Predicted: 0.9819, Binary: 1
+Input: [1 1 1 1], Predicted: 0.0194, Binary: 0
+
+```
+
 #### Effect of Hidden Layers:
 - **Number of Layers**: Increasing the number of hidden layers allows the MLP to model more complex non-linear functions.
 - **Why So Many Layers?**: XOR gates require at least one hidden layer to transform the input space into a linearly separable form. For higher-dimensional XOR gates (e.g., 4-input XOR), additional hidden layers may be needed to capture the complexity of the decision boundary.
@@ -170,11 +204,11 @@ python3 visualize_multi_XOR.py
 
 The animation will be displayed and saved as a GIF in the `animations` folder.
 
-#### Animation Details:
+### Animation Details:
 - **XOR Gate Animation**  
   ![XOR Gate Animation](animations/multi_XOR_perceptron_animation.gif)
 
-The animation illustrates:
+#### The animation illustrates:
 - **Data Points**: White dots represent 0, and black dots represent 1.
 - **Decision Boundary**: Color Gradient (Background Contour)
     - This is a contour map of the MLP’s output over all (x1, x2) positions in the 2D input space.
@@ -182,7 +216,7 @@ The animation illustrates:
     - The red areas represent high output values (~1).
 - **Epoch Progression**: The title of the plot updates to show the current epoch, indicating the training progress.
 
-#### Why the Graph Looks This Way:
+### Why the Graph Looks This Way:
 - The decision boundary is non-linear because the MLP uses hidden layers to transform the input space into a linearly separable form.
 - As training progresses, the boundary becomes more refined, converging to a solution that correctly classifies all inputs.
 - The MLP has learned a non-linear function that separates:
