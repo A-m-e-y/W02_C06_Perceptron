@@ -1,5 +1,7 @@
 import numpy as np
 import sys
+import matplotlib.pyplot as plt
+import networkx as nx
 
 # Sigmoid activation function
 def sigmoid(x):
@@ -38,6 +40,41 @@ class Perceptron:
             if epoch % 1000 == 0:
                 print(f"Epoch {epoch}, Loss: {total_loss:.6f}")
 
+    def draw_structure(self):
+        G = nx.DiGraph()
+
+        # Nodes
+        input_nodes = [f"I{i+1}" for i in range(len(self.weights))]
+        output_node = "O1"
+
+        G.add_nodes_from(input_nodes)
+        G.add_node(output_node)
+
+        # Edges
+        for i in input_nodes:
+            G.add_edge(i, output_node)
+
+        # Positioning by layers
+        pos = {}
+        layer_spacing = 2
+        node_spacing = 1
+
+        # Center-align nodes vertically
+        input_offset = -(len(input_nodes) - 1) * node_spacing / 2
+        pos.update({node: (0, input_offset + i * node_spacing) for i, node in enumerate(input_nodes)})
+        pos[output_node] = (layer_spacing, 0)
+
+        # Draw graph
+        plt.figure(figsize=(6, 4))
+        nx.draw_networkx(G, pos, with_labels=True, arrows=True,
+                         node_color='skyblue', node_size=1500,
+                         edge_color='gray', font_size=12)
+
+        plt.title(f"Perceptron Structure: {len(self.weights)} Input(s), 1 Output")
+        plt.axis('off')
+        plt.tight_layout()
+        plt.show()
+
 def generate_nand_data(n_inputs):
     """Generate training data for an N-input NAND gate."""
     X = np.array([list(map(int, f"{i:0{n_inputs}b}")) for i in range(2**n_inputs)])
@@ -45,7 +82,7 @@ def generate_nand_data(n_inputs):
     return X, y
 
 def main():
-    if len(sys.argv) != 2:
+    if len(sys.argv) < 2:
         print("Usage: python3 Simple_Perceptron_NAND.py <number_of_inputs>")
         sys.exit(1)
 
@@ -72,6 +109,9 @@ def main():
     for xi in X:
         output = p.predict(xi)
         print(f"Input: {xi}, Predicted: {output:.4f}, Binary: {round(output)}")
+
+    if "-v" in sys.argv:
+        p.draw_structure()
 
 if __name__ == "__main__":
     main()

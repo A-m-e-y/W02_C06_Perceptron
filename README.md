@@ -28,6 +28,12 @@ python3 Simple_Perceptron_NAND.py 4
 ```
 This will generate a 4 input NAND Gate.
 
+### Visualization of Perceptron structure for 4 input NAND Gate -
+
+- **4 Input NAND Gate**  
+  ![4 Input NAND Gate](images/Simple_Perceptron_4_inputs_NAND.png)
+
+
 ### Sample Output:
 ```Bash
 Training the perceptron for 4-input NAND logic:
@@ -152,6 +158,12 @@ For example:
 python3 Multi_Layer_Perceptron_XOR.py 4
 ```
 This command creates a 4-input XOR gate.
+
+### Visualization of Multi Layered Perceptron structure for 2 input XOR Gate -
+
+- **2 Input XOR Gate**  
+  ![2 Input XOR Gate](images/MLP_XOR_2_inputs.png)
+
 
 Sample Output -
 ```Bash
