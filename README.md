@@ -239,6 +239,85 @@ The animation will be displayed and saved as a GIF in the `animations` folder.
 
 ---
 
+## Creating a single perceptron network with multiple outputs
+### 1. Single Layer - Multiple Outputs Perceptron (`Simple_Perceptron_Multi_Gates.py`)
+
+This file implements a perceptron that can learn multiple logic gates simultaneously. Instead of training a separate perceptron for each gate, this script trains a single perceptron with multiple outputs, where each output corresponds to a specific logic gate.
+
+#### How to Run:
+```bash
+python3 Simple_Perceptron_Multi_Gates.py 
+```
+
+This command trains the perceptron to learn multiple gates (e.g., AND, OR, NAND, NOR).
+
+#### Visualization of Perceptron Structure:
+- **Multi-Gate Perceptron**  
+  ![Multi-Gate Perceptron](images/Simple_Perceptron_Multi_Gates.png)
+
+#### Sample Output:
+```bash
+Training multi-output perceptron for NAND, AND, NOR, OR:
+Epoch 0, Loss: 5.579476
+Epoch 1000, Loss: 0.418505
+Epoch 2000, Loss: 0.195320
+Epoch 3000, Loss: 0.123407
+Epoch 4000, Loss: 0.089070
+Epoch 5000, Loss: 0.069243
+Epoch 6000, Loss: 0.056430
+Epoch 7000, Loss: 0.047508
+Epoch 8000, Loss: 0.040958
+Epoch 9000, Loss: 0.035955
+
+Predictions:
+Input: [0 0] → NAND: 1, AND: 0, NOR: 1, OR: 0
+Input: [0 1] → NAND: 1, AND: 0, NOR: 0, OR: 1
+Input: [1 0] → NAND: 1, AND: 0, NOR: 0, OR: 1
+Input: [1 1] → NAND: 0, AND: 1, NOR: 0, OR: 1
+
+```
+#### Limitations:
+- Similar to single-layer perceptrons, this implementation can only learn linearly separable functions. Non-linear gates like XOR require a multi-layer perceptron.
+
+### 1. Multi Layer - Multiple Outputs Perceptron (`Multi_Layer_Perceptron_All_Gates.py`)
+
+This file implements a perceptron that can learn multiple logic gates simultaneously including XOR and XNOR. 
+This network contains a hidden layer which allows it to learn non-linealy separable functions like XOR and XNOR as well.
+
+#### How to Run:
+```bash
+python3 Multi_Layer_Perceptron_All_Gates.py 
+```
+
+This command trains the perceptron to learn all the gates (e.g., AND, OR, NAND, NOR, XOR and XNOR).
+
+#### Visualization of Perceptron Structure:
+- **Multi-Layer Multi-Gate Perceptron**  
+  ![Multi-Layer Multi-Gate Perceptron](images/Multi_Layer_Perceptron_Multi_Gates.png)
+
+#### Sample Output:
+```bash
+Training logic gate MLP...
+Epoch 0, Loss: 6.812309
+Epoch 1000, Loss: 1.489940
+Epoch 2000, Loss: 0.266517
+Epoch 3000, Loss: 0.115694
+Epoch 4000, Loss: 0.071140
+Epoch 5000, Loss: 0.050715
+Epoch 6000, Loss: 0.039163
+Epoch 7000, Loss: 0.031787
+Epoch 8000, Loss: 0.026689
+Epoch 9000, Loss: 0.022964
+
+Predictions:
+Input: [0 0] → NAND:1, AND:0, NOR:1, OR:0, XOR:0, XNOR:1
+Input: [0 1] → NAND:1, AND:0, NOR:0, OR:1, XOR:1, XNOR:0
+Input: [1 0] → NAND:1, AND:0, NOR:0, OR:1, XOR:1, XNOR:0
+Input: [1 1] → NAND:0, AND:1, NOR:0, OR:1, XOR:0, XNOR:1
+
+```
+--- 
+
 ## Conclusion
 
 This project demonstrates the power and limitations of single-layer perceptrons. While they can learn linearly separable functions, they fail for non-linear functions like XOR. The visualizations provide an intuitive understanding of the learning process and the challenges faced by single-layer perceptrons.
